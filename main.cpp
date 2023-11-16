@@ -4,7 +4,23 @@
 using namespace std;
 
 template<class dataType>
+//Bubble Sort Implementation
+void bubbleSort(dataType array[], int size){
+	for(int i = 0; i < size; i++)
+	{
+		for(int j = 0; j < size - i - 1; j++){
+			if(array[j] > array[j + 1])
+			{
+				dataType temp = array[j];
+				array[j] = array[j + 1];
+				array[j + 1] = temp;
+			}
+		}
+	}
+}
 
+template<class dataType>
+//Bubble Sort Implementation
 //Insertion Sort Function
 void insertionSort(dataType array[], int size){
   for(int i = 1; i < size; i++){
@@ -31,11 +47,19 @@ int main(void){
    * multiple times for each algorithm using the same numbers generated.
    * *****************************************************************************/
 
-  int array[size];
+  int arrayBubble[size], arrayInsert[size];
   for(int i = 0; i < size; i++){
-    array[i] = rand() % 10000;
-    cout << "Random Number: " << array[i] << endl;
+    arrayBubble[i] = rand() % 10000;
+    arrayInsert[i] = arrayBubble[i];
+//    cout << "Random Number: " << array[i] << endl;
   }
+
+  const auto startBubble = std::chrono::high_resolution_clock::now();
+  bubbleSort(arrayBubble, size);
+  const auto endBubble = std::chrono::high_resolution_clock::now();
+  std::chrono::duration<double, std::milli> elapsedBubble = endBubble - startBubble;
+  cout << "Elapsed bubbleSort Time" << elapsedBubble.count() << " ms" << endl;
+
 
   /**********************************************************
   * Insertion sort Algorithm Implementation
@@ -44,7 +68,7 @@ int main(void){
   * **********************************************************/
   
   const auto startInsertion = std::chrono::high_resolution_clock::now();
-  insertionSort(array, size);
+  insertionSort(arrayInsert, size);
   const auto endInsertion = std::chrono::high_resolution_clock::now();
   std::chrono::duration<double, std::milli> elapsedInsertion = endInsertion - startInsertion;
   cout << "Elapsed insertionSort Time" << elapsedInsertion.count() << " ms" << endl;
@@ -52,4 +76,3 @@ int main(void){
 
   return 0;
 }//end main
-
