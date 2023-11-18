@@ -1,0 +1,5 @@
+For N = 10000
+Elapsed bubbleSort Time: 	1033.96 ms
+Elapsed insertionSort Time: 	237.342 ms
+Elapsed mergeSort Time: 	10.086 ms
+Elapsed quickSort Time: 	2.519 ms
